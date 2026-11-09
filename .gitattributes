@@ -1,0 +1,22 @@
+# Consistent text handling across Windows, Linux, and macOS.
+* text=auto
+*.md text eol=lf
+*.toml text eol=lf
+*.yaml text eol=lf
+*.yml text eol=lf
+*.json text eol=lf
+*.rs text eol=lf
+*.py text eol=lf
+*.ps1 text eol=crlf
+
+# Never apply text conversion to binary artifacts.
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.pdf binary
+*.gguf binary
+*.safetensors binary
+*.onnx binary
+*.bin binary

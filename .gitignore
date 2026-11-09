@@ -1,18 +1,39 @@
 .env
 .env.*
 !.env.example
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+
+# Rust
 __pycache__/
 .pytest_cache/
 .venv/
 target/
+
+# JavaScript / desktop builds
 node_modules/
 dist/
 build/
+
+# Research and local runtime output
+*.log
+*.jsonl
+*.parquet
+coverage/
+htmlcov/
+results/*
+!results/README.md
+tmp/
+scratch/
+
+# Model and database artifacts
 *.gguf
 *.safetensors
 *.onnx
 *.bin
 *.db
 *.sqlite*
-results/private/
+models/cache/
 knowledge/private/
