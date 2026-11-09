@@ -1,0 +1,9 @@
+[package]
+name = "mama-storage"
+version.workspace = true
+edition.workspace = true
+publish = false
+
+[dependencies]
+mama-api = { path = "../mama-api" }
+rusqlite.workspace = true

@@ -1,2 +1,2 @@
 # mama-hardware
-Architecture-owned module placeholder. See docs/REPOSITORY_STRUCTURE.md and docs/REQUIREMENTS.md. No implementation is claimed.
+Queries OS-backed logical CPU, memory and disk capacities. The current snapshot omits disk paths and explicitly reports GPU discovery as unavailable.

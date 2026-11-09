@@ -58,9 +58,10 @@
 
 ## Implementation status
 
-- Implemented baseline: Rust daemon health/capability/budget API; Python RAG, orchestrator, and bounded ReAct prototypes.
-- In progress: API integration, persistent storage, shared contracts, model registry, and test harness.
-- Planned: llama.cpp worker, SQLite/FTS5 knowledge service, ONNX embeddings, desktop client, agent sandbox, installers, and signed updates.
+- Implemented baseline: authenticated Rust daemon API, CPU/RAM/disk inventory, SQLite budget persistence, advisory CPU admission, FTS5 lexical search, and read-only knowledge workflows with bounded redacted history.
+- Research prototypes: Python RAG, orchestrator, and bounded ReAct scripts.
+- Next milestone: checksum-validated GGUF registry and a pinned llama.cpp CPU worker.
+- Planned: OS-backed pairing, ONNX embeddings and hybrid retrieval, desktop client, agent sandbox, installers, and signed updates.
 - Experimental: dense-model modularization, query-conditioned execution, MoE SSD expert streaming, and reinforcement-learning-based execution policies.
 
 The attached visual assets are treated as brand references. They do not define runtime behavior, security policy, or implementation authority.

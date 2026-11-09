@@ -37,3 +37,8 @@ scratch/
 *.sqlite*
 models/cache/
 knowledge/private/
+
+# Local Codex development skills and agent definitions
+/.dwarfnelf-local/
+/.agents/
+/.codex/

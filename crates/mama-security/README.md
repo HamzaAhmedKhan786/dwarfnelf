@@ -1,2 +1,2 @@
 # mama-security
-Architecture-owned module placeholder. See docs/REPOSITORY_STRUCTURE.md and docs/REQUIREMENTS.md. No implementation is claimed.
+Native-client loopback host and bearer credential checks. The daemon supplies the token at startup. OS-backed pairing and credential storage remain planned.

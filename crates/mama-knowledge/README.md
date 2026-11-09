@@ -1,2 +1,2 @@
 # mama-knowledge
-Architecture-owned module placeholder. See docs/REPOSITORY_STRUCTURE.md and docs/REQUIREMENTS.md. No implementation is claimed.
+Indexes bounded UTF-8 text submissions in SQLite FTS5. A repeated source label atomically replaces its chunks. BM25 search returns source labels and chunk ordinals. Pack metadata and dense retrieval remain planned.

@@ -1,5 +1,5 @@
 # Complete Requirements Catalogue
-IDs are stable and testable. Status of every requirement: **specified, not implemented**.
+IDs are stable and testable. Current implementation and verification evidence are recorded in [requirement traceability](REQUIREMENT_TRACEABILITY.md).
 ## Hardware & budgets
 HW-01 Detect CPU ISA/cores, OS, available/total RAM, GPU vendor/driver/VRAM, storage volumes, free disk, power/thermal data where accessible.
 HW-02 Support CPU-only 8/16/32 GB RAM; GPU profiles 8/16/24 GB VRAM with RAM 16–64 GB; do not imply all models fit all profiles.

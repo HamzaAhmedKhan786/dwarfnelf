@@ -40,4 +40,4 @@ dwarfnelf/
 ├── .github/workflows/      # CI, supply chain, release, performance
 └── .gitignore
 ```
-All directories above are included as placeholders in the blueprint; executable implementations are not fabricated.
+This is the target layout. See [development status](DEVELOPMENT_STATUS.md) for executable components and verification evidence.

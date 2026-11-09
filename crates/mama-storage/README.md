@@ -1,2 +1,2 @@
 # mama-storage
-Architecture-owned module placeholder. See docs/REPOSITORY_STRUCTURE.md and docs/REQUIREMENTS.md. No implementation is claimed.
+Opens the local SQLite database in WAL mode, applies versioned migrations, and stores budget settings and bounded redacted agent run summaries.

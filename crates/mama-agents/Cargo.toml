@@ -1,0 +1,10 @@
+[package]
+name = "mama-agents"
+version.workspace = true
+edition.workspace = true
+publish = false
+
+[dependencies]
+mama-knowledge = { path = "../mama-knowledge" }
+rusqlite.workspace = true
+serde.workspace = true

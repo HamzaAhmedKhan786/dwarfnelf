@@ -1,6 +1,15 @@
 [workspace]
 resolver = "2"
-members = ["apps/daemon"]
+members = [
+    "apps/daemon",
+    "crates/mama-agents",
+    "crates/mama-api",
+    "crates/mama-hardware",
+    "crates/mama-knowledge",
+    "crates/mama-scheduler",
+    "crates/mama-security",
+    "crates/mama-storage",
+]
 
 [workspace.package]
 edition = "2021"
@@ -11,7 +20,10 @@ version = "0.1.0"
 axum = "0.7"
 serde = { version = "1", features = ["derive"] }
 serde_json = "1"
+rusqlite = { version = "0.32.1", features = ["bundled"] }
+subtle = "2.6"
+sysinfo = { version = "0.33.1", default-features = false, features = ["system", "disk"] }
+tower = { version = "0.5", features = ["util"] }
 tokio = { version = "1", features = ["macros", "rt-multi-thread", "signal", "net"] }
-tower-http = { version = "0.5", features = ["trace"] }
 tracing = "0.1"
 tracing-subscriber = { version = "0.3", features = ["env-filter", "json"] }

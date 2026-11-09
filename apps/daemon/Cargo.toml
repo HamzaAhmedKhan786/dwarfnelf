@@ -6,9 +6,19 @@ publish = false
 
 [dependencies]
 axum.workspace = true
+mama-agents = { path = "../../crates/mama-agents" }
+mama-api = { path = "../../crates/mama-api" }
+mama-hardware = { path = "../../crates/mama-hardware" }
+mama-knowledge = { path = "../../crates/mama-knowledge" }
+mama-scheduler = { path = "../../crates/mama-scheduler" }
+mama-security = { path = "../../crates/mama-security" }
+mama-storage = { path = "../../crates/mama-storage" }
 serde.workspace = true
 serde_json.workspace = true
+rusqlite.workspace = true
 tokio.workspace = true
-tower-http.workspace = true
 tracing.workspace = true
 tracing-subscriber.workspace = true
+
+[dev-dependencies]
+tower.workspace = true

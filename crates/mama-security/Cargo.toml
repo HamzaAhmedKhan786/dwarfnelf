@@ -1,0 +1,8 @@
+[package]
+name = "mama-security"
+version.workspace = true
+edition.workspace = true
+publish = false
+
+[dependencies]
+subtle.workspace = true

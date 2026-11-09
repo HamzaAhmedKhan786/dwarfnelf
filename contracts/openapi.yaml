@@ -1,21 +1,174 @@
 openapi: 3.1.0
-info: {title: DwarfnElf MAMA Local API, version: 0.1.0-design}
+info: {title: DwarfnElf MAMA Local API, version: 0.1.0}
 servers: [{url: 'http://127.0.0.1:8765'}]
+security: [{LocalBearer: []}]
 paths:
   /health:
     get:
+      security: []
       summary: Daemon health and version
       responses: {'200': {description: Healthy}}
   /v1/capabilities:
     get:
-      summary: Negotiated capabilities (authenticated in implementation)
-      responses: {'200': {description: Capability manifest}}
+      summary: Implemented API capabilities
+      responses: {'200': {description: Capability manifest}, '401': {$ref: '#/components/responses/Unauthorized'}}
   /v1/hardware:
     get:
-      summary: Sanitized local hardware inventory
-      responses: {'200': {description: Hardware information}}
-  /v1/chat/completions:
+      summary: Local CPU, RAM and disk inventory
+      responses: {'200': {description: Hardware information}, '401': {$ref: '#/components/responses/Unauthorized'}}
+  /v1/budgets:
+    get:
+      summary: Read saved resource settings
+      responses:
+        '200': {$ref: '#/components/responses/Budget'}
+        '401': {$ref: '#/components/responses/Unauthorized'}
+    put:
+      summary: Replace saved resource settings
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: {$ref: './config.schema.json'}
+      responses:
+        '200': {$ref: '#/components/responses/Budget'}
+        '400': {description: Invalid resource settings or malformed JSON}
+        '401': {$ref: '#/components/responses/Unauthorized'}
+  /v1/knowledge/import:
     post:
-      summary: Local streaming or non-streaming generation with citations
-      responses: {'200': {description: Chat response}}
-# Design stub: full request/response schemas and security schemes require implementation.
+      summary: Replace indexed text for a client-provided source
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [source, text]
+              additionalProperties: false
+              properties:
+                source: {type: string, description: Source label up to 512 UTF-8 bytes}
+                text: {type: string, description: Nonempty document text up to 128 KiB}
+      responses: {'200': {description: Indexed chunk count}, '401': {$ref: '#/components/responses/Unauthorized'}}
+  /v1/knowledge/search:
+    post:
+      summary: Search local text chunks by BM25
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [query]
+              additionalProperties: false
+              properties:
+                query: {type: string, description: Nonempty query up to 1024 UTF-8 bytes}
+      responses: {'200': {description: Ranked source chunks and abstention flag}, '401': {$ref: '#/components/responses/Unauthorized'}}
+  /v1/decisions/admission:
+    post:
+      summary: Evaluate a CPU RAM estimate against saved limits and live RAM
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [weights_bytes, kv_cache_bytes, runtime_bytes]
+              additionalProperties: false
+              properties:
+                weights_bytes: {type: integer, minimum: 1}
+                kv_cache_bytes: {type: integer, minimum: 1}
+                runtime_bytes: {type: integer, minimum: 1}
+      responses:
+        '200':
+          description: Advisory CPU admission result for this snapshot
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [outcome, required_ram_bytes, usable_ram_bytes, os_reserve_bytes, suggested_threads]
+                properties:
+                  outcome: {enum: [fits_snapshot, missing_hardware, exceeds_configured_budget, exceeds_available_memory]}
+                  required_ram_bytes: {type: integer}
+                  usable_ram_bytes: {type: [integer, 'null']}
+                  os_reserve_bytes: {type: [integer, 'null']}
+                  suggested_threads: {type: [integer, 'null']}
+        '400': {description: Invalid or overflowing estimate}
+        '401': {$ref: '#/components/responses/Unauthorized'}
+  /v1/agents/runs:
+    post:
+      summary: Run a bounded read-only workflow with local knowledge tools
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [steps]
+              additionalProperties: false
+              properties:
+                steps:
+                  type: array
+                  minItems: 1
+                  maxItems: 4
+                  items:
+                    type: object
+                    required: [tool, query]
+                    additionalProperties: false
+                    properties:
+                      tool: {const: knowledge_search}
+                      query: {type: string, description: Nonempty query up to 1024 UTF-8 bytes}
+      responses:
+        '200':
+          description: Workflow status, citations and per-step summaries
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [id, status, abstained, citations, trace]
+                properties:
+                  id: {type: integer, minimum: 1}
+                  status: {enum: [completed, deadline_reached, tool_failed]}
+                  abstained: {type: boolean}
+                  citations:
+                    type: array
+                    items:
+                      type: object
+                      required: [source, chunk]
+                      properties:
+                        source: {type: string}
+                        chunk: {type: integer, minimum: 0}
+                  trace:
+                    type: array
+                    items:
+                      type: object
+                      required: [step, tool, hit_count, elapsed_ms]
+                      properties:
+                        step: {type: integer, minimum: 0, maximum: 3}
+                        tool: {const: knowledge_search}
+                        hit_count: {type: integer, minimum: 0}
+                        elapsed_ms: {type: integer, minimum: 0}
+        '400': {description: Invalid workflow bounds}
+        '401': {$ref: '#/components/responses/Unauthorized'}
+        '422': {description: Invalid step structure or unregistered tool}
+  /v1/agents/runs/{id}:
+    get:
+      summary: Read a retained redacted workflow summary
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: {type: integer, minimum: 1}
+      responses:
+        '200': {description: 'Run ID, UTC creation timestamp and redacted summary'}
+        '400': {description: Invalid run ID}
+        '401': {$ref: '#/components/responses/Unauthorized'}
+        '404': {description: Unknown or expired run ID}
+components:
+  securitySchemes:
+    LocalBearer: {type: http, scheme: bearer}
+  responses:
+    Unauthorized: {description: Local bearer credential is missing or invalid}
+    Budget:
+      description: Saved resource settings
+      content:
+        application/json:
+          schema: {$ref: './config.schema.json'}

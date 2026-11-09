@@ -1,0 +1,12 @@
+[package]
+name = "mama-knowledge"
+version.workspace = true
+edition.workspace = true
+publish = false
+
+[dependencies]
+rusqlite.workspace = true
+serde.workspace = true
+
+[dev-dependencies]
+mama-storage = { path = "../mama-storage" }

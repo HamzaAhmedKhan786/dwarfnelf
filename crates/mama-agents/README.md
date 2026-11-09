@@ -1,2 +1,2 @@
 # mama-agents
-Architecture-owned module placeholder. See docs/REPOSITORY_STRUCTURE.md and docs/REQUIREMENTS.md. No implementation is claimed.
+Executes a bounded sequence of explicitly selected local knowledge searches. The tool set is closed, and results contain deduplicated citations and per-step summaries. The deadline is checked between steps and cannot interrupt an in-flight SQLite query. Persistent workflows, approval gates, MCP and sandboxed side-effecting tools remain planned.

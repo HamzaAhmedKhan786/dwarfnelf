@@ -1,2 +1,2 @@
 # mama-api
-Architecture-owned module placeholder. See docs/REPOSITORY_STRUCTURE.md and docs/REQUIREMENTS.md. No implementation is claimed.
+Shared v1 budget and error types. The daemon validates budget requests before writing them to storage.

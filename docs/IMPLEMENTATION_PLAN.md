@@ -11,3 +11,7 @@ All workstreams are included in product scope from day one; sequence reflects en
 9. Evaluation/observability suites, domain-specific accuracy gates, hardware benchmark matrix, dashboard and report export.
 10. Signed cross-platform installers, updater/rollback, backup/restore, security hardening and release certification.
 Each workstream has unit, integration, performance, adversarial, and offline E2E tests. Experimental techniques can fail their hypotheses without making baseline local inference unusable. See `RELEASE_GATES.md`.
+
+## Current backend milestone
+
+The daemon has native-client bearer authentication, request IDs, CPU/RAM/disk inspection, SQLite schema migration, budget persistence and transactional text indexing with FTS5 BM25 retrieval. CPU admission and bounded read-only agent workflows are available through the v1 API. The next milestone is the model registry and pinned llama.cpp worker. OS-backed pairing, GPU discovery, runtime enforcement, richer knowledge and agent capabilities and desktop integration follow the original workstreams.
