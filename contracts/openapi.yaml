@@ -1,0 +1,21 @@
+openapi: 3.1.0
+info: {title: DwarfnElf MAMA Local API, version: 0.1.0-design}
+servers: [{url: 'http://127.0.0.1:8765'}]
+paths:
+  /health:
+    get:
+      summary: Daemon health and version
+      responses: {'200': {description: Healthy}}
+  /v1/capabilities:
+    get:
+      summary: Negotiated capabilities (authenticated in implementation)
+      responses: {'200': {description: Capability manifest}}
+  /v1/hardware:
+    get:
+      summary: Sanitized local hardware inventory
+      responses: {'200': {description: Hardware information}}
+  /v1/chat/completions:
+    post:
+      summary: Local streaming or non-streaming generation with citations
+      responses: {'200': {description: Chat response}}
+# Design stub: full request/response schemas and security schemes require implementation.

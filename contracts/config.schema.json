@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "MAMA Resource Budget",
+  "type": "object",
+  "properties": {
+    "max_ram_gb": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "max_vram_gb": {
+      "type": "number",
+      "minimum": 0
+    },
+    "max_ssd_gb": {
+      "type": "number",
+      "minimum": 0
+    },
+    "cpu_target_percent": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 100
+    }
+  },
+  "required": [
+    "max_ram_gb",
+    "max_ssd_gb"
+  ]
+}

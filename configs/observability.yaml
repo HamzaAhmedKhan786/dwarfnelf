@@ -1,0 +1,7 @@
+telemetry:
+  local_enabled: true
+  remote_export_enabled: false
+  log_user_prompts: false
+  redact_paths: true
+  redact_secrets: true
+  metrics: [ttft_ms, tokens_per_second, rss_bytes, vram_bytes, disk_reads, cache_hit_rate, retrieval_ndcg, agent_tool_errors]

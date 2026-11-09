@@ -1,0 +1,2 @@
+# Dependency Management
+`requirements.txt` is for research/eval only. Production Rust uses `Cargo.toml`/`Cargo.lock`, desktop uses `package.json` and lockfile, C++ uses pinned `native/llama.cpp` source or vendored release with hash, ONNX Runtime uses pinned platform assets. Exact versions must be pinned and license/security-audited before build/release; placeholder manifests are not a working compiled product. Model weights, datasets and optional large embedding packs are separately managed artifacts with hashes and licenses.

@@ -1,0 +1,14 @@
+# Candidate model IDs only; no implicit download or guarantee of local compatibility.
+models:
+  - id: Qwen/Qwen2.5-0.5B-Instruct
+    role: local_router_candidate
+    license_review_required: true
+  - id: Qwen/Qwen2.5-1.5B-Instruct
+    role: dense_baseline_candidate
+    license_review_required: true
+  - id: Qwen/Qwen1.5-MoE-A2.7B-Chat
+    role: moe_research_candidate
+    license_review_required: true
+  - id: Qwen/Qwen3-30B-A3B
+    role: large_moe_research_candidate
+    license_review_required: true

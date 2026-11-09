@@ -1,0 +1,2 @@
+# Production Release Gates
+G0 architecture/API/schema reviewed; G1 signed offline installer works without developer tools; G2 hardware budgets enforced/tested under memory pressure; G3 inference parity against baseline; G4 RAG citation and provenance tests; G5 agent sandbox/approval penetration tests; G6 model/domain evaluation with confidence intervals and published limitations; G7 Windows/Linux E2E, backup/restore, update rollback; G8 supply-chain audit, SBOM and signed GitHub release. No gate may be marked passed without machine-readable evidence.

@@ -1,0 +1,8 @@
+agent_policy:
+  max_steps: 12
+  max_parallel_tools: 2
+  default_network_access: false
+  default_filesystem_write: false
+  approval_required: [shell, filesystem_write, network_post, delete, external_connector]
+  checkpoint: true
+  audit_redaction: true

@@ -1,0 +1,20 @@
+# Research/evaluation environment ONLY — not needed by desktop users.
+# Versions are bounded compatibility candidates; lock exact hashes in a release lockfile.
+pytest>=8,<10
+pytest-cov>=5,<8
+numpy>=1.26,<3
+pandas>=2.2,<3
+scikit-learn>=1.5,<2
+psutil>=6,<9
+pydantic>=2.8,<3
+pyyaml>=6,<7
+huggingface-hub>=0.26,<2
+transformers>=4.46,<6
+accelerate>=1.0,<2
+peft>=0.13,<1
+datasets>=3,<5
+torch>=2.5,<3
+sentence-transformers>=3,<6
+lm-eval>=0.4,<1
+safetensors>=0.4,<1
+rich>=13,<15

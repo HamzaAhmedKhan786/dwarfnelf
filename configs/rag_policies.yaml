@@ -1,0 +1,6 @@
+policies:
+  default: {retrieval: hybrid, fusion: rrf, rerank: budget_conditional, evidence: primary, cite: true, abstain_if_unsupported: true}
+  legal: {retrieval: hybrid, jurisdiction_filter: required, effective_date_filter: required, authority_rank: true, evidence: strict}
+  medical: {retrieval: hybrid, guideline_date_filter: true, authority_rank: true, evidence: strict}
+  code: {retrieval: hybrid, version_filter: true, evidence: primary}
+  low_memory: {retrieval: lexical, rerank: false, evidence: primary}

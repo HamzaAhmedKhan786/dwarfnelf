@@ -1,0 +1,10 @@
+[build-system]
+requires = ["setuptools>=70", "wheel"]
+build-backend = "setuptools.build_meta"
+[project]
+name = "dwarfnelf-research"
+version = "0.0.0"
+description = "Research and evaluation scaffolding for DwarfnElf/MAMA"
+requires-python = ">=3.11,<3.13"
+[tool.pytest.ini_options]
+testpaths = ["tests"]
